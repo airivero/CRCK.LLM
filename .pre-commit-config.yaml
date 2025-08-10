@@ -42,3 +42,4 @@ repos:
           - --ignore-words-list=hass,master
           - --skip="./.*"
           - --quiet-level=2
+          
