@@ -12,4 +12,4 @@ pandoc==2.3
 pypandoc==1.11
 tqdm==4.66.1
 sentence_transformers==2.2.2
-## llama-2-7b-chat.gguf.q4_0.bin model/ cannnot be upload here
+## llama-2-7b-chat.gguf.q4_0.bin model cannnot be upload/ should be a directory named model with the mentioned model inside
