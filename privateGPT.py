@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
