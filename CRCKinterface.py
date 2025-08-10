@@ -5,11 +5,11 @@ import threading
 from PIL import Image, ImageTk
 import pyttsx3
 
-# Crea un motor de síntesis de voz
+# Create a speech synthesis engine
 engine = pyttsx3.init()
 
 def enviar_mensaje(event=None):
-    # Deshabilitar la entrada y el botón mientras se procesa
+    # Disable input and button while processing
     entrada.config(state=tk.DISABLED)
     enviar_boton.config(state=tk.DISABLED)
     
@@ -22,52 +22,52 @@ def enviar_mensaje(event=None):
         chat.insert(tk.END, "CRCK: " + resp + "\n", "answer")
         chat.config(state=tk.DISABLED)
 
-        # Habilitar la entrada y el botón nuevamente
+        # Enable the input and button again
         entrada.config(state=tk.NORMAL)
         enviar_boton.config(state=tk.NORMAL)
 
-        # Limpiar el campo de entrada
+        # Clear the input field
         entrada.delete(0, tk.END)
 
-        # Convierte y habla la respuesta del chatbot
+        # Converts and "speaks" the chatbot's response
         engine.say(resp)
         engine.runAndWait()
     
-    # Crear un hilo para procesar la respuesta
+    # Create a thread to process the response
     thread = threading.Thread(target=procesar_respuesta)
     thread.start()
 
-# Crear la ventana de chat
+# Create chat window
 ventana = tk.Tk()
 ventana.title("CRCK")
 ventana.geometry("900x700")
 
-# Cargar una imagen en formato .png
-imagen = Image.open('C:/Users/Bao5y/Desktop/CRCK.LLM-main/icono.png')
-imagen = imagen.resize((32, 32))  # Ajusta el tamaño de la imagen
+# Upload image .png
+imagen = Image.open('C:/Users/Bao5y/Desktop/CRCK.LLM-main/icono.png') # Change directory
+imagen = imagen.resize((32, 32))  
 icono = ImageTk.PhotoImage(imagen)
 
-# Establecer la imagen como icono de la ventana
+# Image as icon
 ventana.iconphoto(False, icono)
 
-# Crear un Frame para el chat
+# Create a Frame for chat
 chat_frame = tk.Frame(ventana)
 chat_frame.pack(fill=tk.BOTH, expand=True)
 
-# Crear el área de chat
+# Create chat area
 chat = Text(chat_frame, state=tk.DISABLED)
 chat.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-# Agregar una barra de desplazamiento al área de chat
+# Adding scroll
 scrollbar = Scrollbar(chat_frame, command=chat.yview)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 chat.config(yscrollcommand=scrollbar.set)
 
-# Configurar etiquetas de formato
+# Labels
 chat.tag_config("query", foreground="black")
 chat.tag_config("answer", foreground="red")
 
-# Crear un Frame para el campo de entrada y el botón
+# Create Frame for entry 
 entrada_frame = tk.Frame(ventana)
 entrada_frame.pack(fill=tk.BOTH, expand=False)
 
@@ -79,3 +79,4 @@ enviar_boton = tk.Button(entrada_frame, text="Send", command=enviar_mensaje)
 enviar_boton.pack(side=tk.RIGHT)
 
 ventana.mainloop()
+
